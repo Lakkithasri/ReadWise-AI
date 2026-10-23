@@ -152,25 +152,25 @@ export const PromptLibraryView: React.FC = () => {
 
   return (
     <div className="p-4 lg:p-8 space-y-8 max-w-7xl mx-auto">
-      {/* Header Banner - Adaptive Theme */}
-      <div className="p-6 rounded-3xl bg-gradient-to-r from-brand-50 via-amber-50/70 to-orange-50 dark:from-navy-900 dark:via-brand-950 dark:to-navy-900 border border-brand-200/70 dark:border-navy-800 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      {/* Header Banner - Crisp Elevated 3D Claymorphic Card */}
+      <div className="clay-card p-6 md:p-8 border-2 border-peachy-200/90 dark:border-rose-950/80 shadow-clay-card flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-brand-800 dark:text-brand-300 bg-brand-100/80 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800/80 text-[11px] font-bold uppercase tracking-wider">
-            <Terminal className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" /> Prompt Engineering Laboratory
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blossom-100 dark:bg-navy-800 border-2 border-blossom-300 dark:border-rose-900 text-blossom-700 dark:text-blossom-300 text-xs font-black uppercase tracking-wider shadow-xs">
+            <Terminal className="w-4 h-4 text-blossom-600 dark:text-blossom-400" /> Prompt Engineering Laboratory ✨
           </div>
-          <h2 className="text-xl md:text-2xl font-bold mt-2 text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-black mt-2 text-slate-800 dark:text-rose-50 tracking-tight">
             Prompt Library & Version Comparison
           </h2>
-          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-rose-200/80 max-w-2xl font-medium leading-relaxed mt-1">
             Create, version, and execute tailored prompt templates against academic papers. Rate model outputs on <strong>Clarity</strong>, <strong>Accuracy</strong>, <strong>Completeness</strong>, and <strong>Usefulness</strong>.
           </p>
         </div>
 
         <button
           onClick={() => setShowNewModal(true)}
-          className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-600/30 flex items-center gap-2 flex-shrink-0"
+          className="btn-3d btn-3d-coral px-6 py-3 text-xs sm:text-sm font-black shadow-3d-md flex items-center gap-2 flex-shrink-0"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 text-butter-200" />
           <span>New Prompt Template</span>
         </button>
       </div>

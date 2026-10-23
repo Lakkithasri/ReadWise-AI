@@ -110,13 +110,13 @@ export const RecallTestsView: React.FC<RecallTestsViewProps> = ({ initialReading
 
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-7xl mx-auto">
-      {/* Top Banner - Adaptive Theme */}
-      <div className="p-6 rounded-3xl bg-gradient-to-r from-brand-50 via-amber-50/70 to-orange-50 dark:from-navy-900 dark:via-brand-950 dark:to-navy-900 border border-brand-200/70 dark:border-navy-800 shadow-sm space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-brand-800 dark:text-brand-300 bg-brand-100/80 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800/80 text-[11px] font-bold uppercase tracking-wider">
-          <Clock className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" /> Active Retrieval & Spaced Repetition
+      {/* Top Banner - Crisp Elevated 3D Claymorphic Card */}
+      <div className="clay-card p-6 md:p-8 border-2 border-peachy-200/90 dark:border-rose-950/80 shadow-clay-card space-y-3">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blossom-100 dark:bg-navy-800 border-2 border-blossom-300 dark:border-rose-900 text-blossom-700 dark:text-blossom-300 text-xs font-black uppercase tracking-wider shadow-xs">
+          <Clock className="w-4 h-4 text-blossom-600 dark:text-blossom-400" /> Active Retrieval & Spaced Repetition 🌸
         </div>
-        <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">Seven-Day Recall Testing System</h2>
-        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-rose-50 tracking-tight">Seven-Day Recall Testing System</h2>
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-rose-200/80 max-w-3xl font-medium leading-relaxed">
           Test your comprehension without consulting study notes. Answer open-ended questions in your own words, receive source-grounded grading with conceptual rubric feedback, and automatically schedule follow-up retention exams 7 days later.
         </p>
       </div>

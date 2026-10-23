@@ -5,15 +5,64 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    @apply bg-peachy-50 text-slate-800 dark:bg-navy-950 dark:text-rose-100 transition-colors duration-200;
   }
   code, pre {
     font-family: 'JetBrains Mono', monospace;
   }
 }
 
-/* Custom glassmorphism and card animations */
+/* 3D Cartoony Claymorphic Card */
+.clay-card {
+  @apply bg-white/95 dark:bg-navy-900/90 backdrop-blur-md rounded-3xl border-2 border-peachy-200/80 dark:border-rose-950/80 shadow-clay-card dark:shadow-clay-card-dark transition-all duration-200;
+}
+
+.clay-card-hover {
+  @apply hover:-translate-y-1 hover:shadow-xl hover:border-peachy-300 dark:hover:border-blossom-500/40;
+}
+
+/* 3D Cartoony Buttons */
+.btn-3d {
+  @apply relative font-bold text-white rounded-2xl transition-all duration-150 inline-flex items-center justify-center select-none active:translate-y-1;
+}
+
+.btn-3d-coral {
+  @apply bg-peachy-500 hover:bg-peachy-400 text-white shadow-3d-md active:shadow-3d-pressed border border-peachy-300/40;
+}
+
+.btn-3d-pink {
+  @apply bg-blossom-500 hover:bg-blossom-400 text-white shadow-3d-pink active:shadow-3d-pressed border border-blossom-300/40;
+}
+
+.btn-3d-butter {
+  @apply bg-butter-300 hover:bg-butter-200 text-amber-900 shadow-3d-butter active:shadow-3d-pressed border border-butter-200;
+}
+
+.btn-3d-white {
+  @apply bg-white dark:bg-navy-800 text-slate-700 dark:text-rose-200 border-2 border-peachy-200 dark:border-navy-700 shadow-[0_4px_0_0_#FDD8CC] dark:shadow-[0_4px_0_0_#3D222E] hover:bg-peachy-50 active:translate-y-1 active:shadow-none;
+}
+
+/* 3D Cartoony Navigation Pill Tab */
+.tab-3d {
+  @apply relative flex items-center justify-between px-4 py-3 rounded-2xl font-bold transition-all duration-150 select-none;
+}
+
+.tab-3d-active {
+  @apply bg-gradient-to-r from-peachy-500 to-blossom-500 text-white shadow-[0_5px_0_0_#C74934,0_8px_16px_rgba(247,125,101,0.35)] translate-y-[-2px] border border-white/30;
+}
+
+.tab-3d-inactive {
+  @apply text-slate-600 dark:text-rose-200/80 bg-white/70 dark:bg-navy-900/60 hover:bg-peachy-100/70 dark:hover:bg-navy-800/80 hover:text-peachy-600 dark:hover:text-blossom-300 border border-peachy-200/60 dark:border-rose-950/60 hover:translate-y-[-1px] shadow-[0_2px_0_0_rgba(253,216,204,0.6)] dark:shadow-[0_2px_0_0_rgba(61,34,46,0.6)];
+}
+
+/* Post-It Note Style */
+.post-it-note {
+  @apply bg-butter-100 text-amber-950 p-5 rounded-2xl border-2 border-butter-300 shadow-post-it relative transform -rotate-1 hover:rotate-0 transition-transform duration-200;
+}
+
+/* Glass Panel with Peachy Glow */
 .glass-panel {
-  @apply bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm;
+  @apply bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border-2 border-peachy-200/70 dark:border-rose-950/70 shadow-sm;
 }
 
 /* 3D Flip Card Effect */
@@ -33,21 +82,36 @@
   -webkit-transform: rotateY(180deg);
 }
 .card-flipper-transition {
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Peachy Blossom Style */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(250, 192, 175, 0.6);
   border-radius: 9999px;
+  border: 2px solid transparent;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(217, 108, 0, 0.7);
+  background: rgba(247, 125, 101, 0.85);
+}
+
+/* Floating animation for 3D elements */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-gentle 4.5s ease-in-out 1.5s infinite;
 }

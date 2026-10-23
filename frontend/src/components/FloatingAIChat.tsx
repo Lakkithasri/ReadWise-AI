@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   MessageSquare, X, Send, Bot, Sparkles, ExternalLink, 
-  Minimize2, ChevronDown, RotateCcw, Lightbulb, HelpCircle 
+  RotateCcw, Lightbulb, HelpCircle, Heart 
 } from 'lucide-react';
 import { api } from '../api/client';
 
@@ -28,7 +28,7 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
     {
       id: 'welcome',
       role: 'model',
-      text: 'Hello! I am your ReadWise AI Academic Tutor. You can ask me to explain difficult concepts, break down complex papers into simple analogies, or quiz your understanding without notes.',
+      text: 'Hello, Scholar! 🌸 I am your ReadWise AI Companion. Ask me to break down complex papers, create intuitive analogies, or quiz your memory on any concept!',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -59,7 +59,13 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
     setIsLoading(true);
 
     try {
-      const history = messages.map((m) => ({ role: m.role, text: m.text }));
+      const history = messages
+        .filter((m) => m.id !== 'welcome')
+        .map((m) => ({
+          role: m.role,
+          text: m.text
+        }));
+
       const response = await api.sendChatMessage({
         message: text,
         history,
@@ -87,121 +93,114 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
   };
 
   const quickPrompts = [
-    { label: 'Explain simply', prompt: 'Can you explain the core concept in very simple, intuitive terms with an analogy?' },
-    { label: 'Quiz me', prompt: 'Ask me 2 challenging open-ended recall questions to test my memory.' },
-    { label: 'Key takeaway', prompt: 'What is the single most important academic conclusion I should remember?' }
+    { label: 'Explain simply 🌸', prompt: 'Can you explain the core concept in very simple, intuitive terms with an analogy?' },
+    { label: 'Quiz me 🧠', prompt: 'Ask me 2 challenging open-ended recall questions to test my memory.' },
+    { label: 'Key takeaway 💡', prompt: 'What is the single most important academic conclusion I should remember?' }
   ];
 
   return (
     <>
-      {/* Floating Launcher Button in Bottom Right Corner */}
+      {/* 3D Cartoony Floating Launcher Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-tr from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white shadow-2xl hover:scale-105 active:scale-95 flex items-center justify-center transition-all cursor-pointer border border-brand-400/40 group shadow-brand-500/25"
-          title="Open AI Chat Tutor"
+          className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-gradient-to-tr from-peachy-600 via-blossom-500 to-peachy-400 text-white shadow-3d-pink hover:scale-110 active:scale-95 flex items-center justify-center transition-all cursor-pointer border-2 border-white/60 group animate-float"
+          title="Open Peachy AI Companion"
         >
           <div className="relative">
-            <MessageSquare className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900" />
+            <MessageSquare className="w-7 h-7 text-white group-hover:rotate-6 transition-transform" />
+            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-butter-300 rounded-full border-2 border-white flex items-center justify-center text-[8px]">
+              ✨
+            </span>
           </div>
         </button>
       )}
 
-      {/* Floating Chat Drawer Window */}
+      {/* Floating Chat Drawer Window in 3D Peachy Blossom */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] sm:w-[420px] max-w-[calc(100vw-32px)] h-[580px] max-h-[calc(100vh-64px)] bg-white dark:bg-navy-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-navy-800 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 font-sans">
+        <div className="fixed bottom-6 right-6 z-50 w-[380px] sm:w-[420px] max-w-[calc(100vw-32px)] h-[580px] max-h-[calc(100vh-64px)] clay-card flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 border-3 border-peachy-300 dark:border-rose-900 shadow-2xl">
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-brand-50 via-amber-50/70 to-orange-50 dark:from-navy-950 dark:via-brand-950 dark:to-navy-900 border-b border-slate-200 dark:border-navy-800 flex items-center justify-between">
+          <div className="p-4 bg-gradient-to-r from-peachy-100 via-blossom-100 to-butter-100 dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 border-b-2 border-peachy-200 dark:border-rose-950 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-peachy-500 to-blossom-500 text-white flex items-center justify-center shadow-3d-sm border border-white">
                 <Bot className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                    ReadWise AI Tutor
+                  <h4 className="text-sm font-black text-slate-800 dark:text-rose-100">
+                    ReadWise Companion
                   </h4>
-                  <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded-md bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300">
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-blossom-200 text-blossom-800 border border-blossom-300">
                     Gemini 3.8
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400">
+                <div className="flex items-center gap-1.5 text-[11px] text-peachy-700 dark:text-blossom-300 font-bold">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Online Study Assistant</span>
+                  <span>Ready to Explore 🌸</span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-1">
-              <a
-                href="https://chatgpt.com"
-                target="_blank"
-                rel="noreferrer"
-                title="Open ChatGPT in new tab"
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-navy-800 transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-white/60 dark:hover:bg-navy-800 transition-colors"
+                className="p-1.5 rounded-xl text-peachy-600 hover:text-peachy-900 hover:bg-white/80 dark:hover:bg-navy-800 transition-colors"
                 title="Minimize Chat"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
           </div>
 
           {/* Active Context Bar if reading is selected */}
           {activeReadingTitle && (
-            <div className="px-4 py-1.5 bg-brand-50/90 dark:bg-brand-950/40 border-b border-brand-100 dark:border-brand-900/60 flex items-center gap-1.5 text-[11px] text-brand-800 dark:text-brand-300 truncate">
-              <Sparkles className="w-3.5 h-3.5 flex-shrink-0 text-brand-500" />
+            <div className="px-4 py-1.5 bg-peachy-50 dark:bg-navy-950 border-b border-peachy-200 dark:border-rose-950 flex items-center gap-1.5 text-[11px] text-peachy-800 dark:text-rose-200 truncate font-semibold">
+              <Sparkles className="w-3.5 h-3.5 flex-shrink-0 text-butter-500" />
               <span className="truncate">Context: <strong>{activeReadingTitle}</strong></span>
             </div>
           )}
 
           {/* Messages Scroll Area */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs">
+          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs bg-peachy-50/40 dark:bg-navy-950/40">
             {messages.map((m) => (
               <div
                 key={m.id}
                 className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
-                  className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed ${
+                  className={`max-w-[85%] p-3.5 rounded-3xl leading-relaxed ${
                     m.role === 'user'
-                      ? 'bg-brand-600 text-white rounded-br-none shadow-md shadow-brand-600/20'
-                      : 'bg-slate-100 dark:bg-navy-950 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-navy-800 rounded-bl-none'
+                      ? 'bg-gradient-to-r from-peachy-500 to-blossom-500 text-white rounded-br-none shadow-3d-sm font-semibold'
+                      : 'bg-white dark:bg-navy-900 text-slate-800 dark:text-rose-100 border-2 border-peachy-200 dark:border-rose-950 rounded-bl-none shadow-xs'
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{m.text}</p>
                 </div>
-                <span className="text-[10px] text-slate-400 mt-1 px-1">
+                <span className="text-[10px] text-peachy-400 dark:text-rose-400 mt-1 px-1 font-bold">
                   {m.timestamp}
                 </span>
               </div>
             ))}
 
             {isLoading && (
-              <div className="flex items-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-navy-950 text-slate-500 text-xs w-fit">
-                <div className="w-2 h-2 rounded-full bg-brand-500 animate-bounce" />
-                <div className="w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.2s]" />
-                <div className="w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.4s]" />
-                <span className="text-[11px] ml-1">AI Tutor is thinking...</span>
+              <div className="flex items-center gap-2 p-3 rounded-2xl bg-white dark:bg-navy-900 text-peachy-600 text-xs w-fit border border-peachy-200">
+                <div className="w-2 h-2 rounded-full bg-peachy-500 animate-bounce" />
+                <div className="w-2 h-2 rounded-full bg-blossom-500 animate-bounce [animation-delay:0.2s]" />
+                <div className="w-2 h-2 rounded-full bg-butter-400 animate-bounce [animation-delay:0.4s]" />
+                <span className="text-[11px] ml-1 font-bold">Peachy Companion thinking...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
           {/* Quick Prompt Chips */}
-          <div className="px-3 py-2 bg-slate-50/80 dark:bg-navy-950/60 border-t border-slate-100 dark:border-navy-800/80 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+          <div className="px-3 py-2 bg-peachy-100/60 dark:bg-navy-950/60 border-t border-peachy-200 dark:border-rose-950 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             {quickPrompts.map((qp, idx) => (
               <button
                 key={idx}
                 onClick={() => handleSend(qp.prompt)}
                 disabled={isLoading}
-                className="px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap bg-white dark:bg-navy-900 border border-slate-200 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors shadow-2xs"
+                className="px-2.5 py-1 rounded-full text-[11px] font-black whitespace-nowrap bg-white dark:bg-navy-900 border border-peachy-300 dark:border-rose-900 text-peachy-800 dark:text-rose-200 hover:bg-peachy-500 hover:text-white transition-colors shadow-2xs"
               >
                 {qp.label}
               </button>
@@ -209,7 +208,7 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
           </div>
 
           {/* Input Footer */}
-          <div className="p-3 border-t border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-900">
+          <div className="p-3 border-t-2 border-peachy-200 dark:border-rose-950 bg-white dark:bg-navy-900">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -222,22 +221,18 @@ export const FloatingAIChat: React.FC<FloatingAIChatProps> = ({
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                placeholder="Ask about this paper, concepts, analogies..."
+                placeholder="Ask about papers, concepts, analogies..."
                 disabled={isLoading}
-                className="flex-1 px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-navy-700 bg-slate-50 dark:bg-navy-950 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="flex-1 px-4 py-2.5 text-xs rounded-2xl border-2 border-peachy-200 dark:border-rose-900 bg-peachy-50/70 dark:bg-navy-950 text-slate-800 dark:text-rose-100 placeholder:text-peachy-400 focus:outline-none focus:border-peachy-500 font-medium"
               />
               <button
                 type="submit"
                 disabled={!inputMessage.trim() || isLoading}
-                className="p-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 disabled:opacity-40 text-white shadow-md shadow-brand-600/30 transition-all flex items-center justify-center flex-shrink-0"
+                className="p-2.5 rounded-2xl bg-peachy-500 hover:bg-peachy-400 text-white shadow-3d-sm active:translate-y-0.5 disabled:opacity-40 transition-all flex items-center justify-center flex-shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
-            <div className="mt-1.5 flex items-center justify-between text-[10px] text-slate-400 px-1">
-              <span>Powered by Google Gemini 3.8 Flash</span>
-              <span className="font-semibold text-brand-600 dark:text-brand-400">100% Free Tier</span>
-            </div>
           </div>
         </div>
       )}

@@ -11,9 +11,10 @@ import {
   BookMarked,
   Layers,
   Settings,
-  Sparkles,
   ChevronRight,
-  X
+  X,
+  Sparkles,
+  Heart
 } from 'lucide-react';
 import { GlowingBookLogo } from './GlowingBookLogo';
 
@@ -45,7 +46,8 @@ interface NavItemConfig {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
   badge?: string | number;
-  badgeColor?: string;
+  badgeType?: 'butter' | 'pink' | 'coral';
+  tag?: string;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -57,16 +59,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setIsOpenMobile
 }) => {
   const navItems: NavItemConfig[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'library', label: 'Reading Library', icon: BookOpen, badge: readingsCount > 0 ? readingsCount : undefined },
+    { id: 'dashboard', label: 'Study Journey', icon: LayoutDashboard, tag: 'Map' },
+    { id: 'library', label: 'Reading Library', icon: BookOpen, badge: readingsCount > 0 ? readingsCount : undefined, badgeType: 'butter' },
     { id: 'summaries', label: 'AI Summaries', icon: FileText },
-    { id: 'cards', label: 'Idea Cards & Flashcards', icon: Lightbulb },
-    { id: 'recall', label: 'Recall Tests', icon: Clock, badge: dueTestsCount > 0 ? `${dueTestsCount} Due` : undefined, badgeColor: 'bg-rose-500 text-white' },
-    { id: 'experiments', label: 'Learning Comparison', icon: BarChart3 },
+    { id: 'cards', label: 'Idea Cards & Quiz', icon: Lightbulb },
+    { id: 'recall', label: 'Recall Arena', icon: Clock, badge: dueTestsCount > 0 ? `${dueTestsCount} Due` : undefined, badgeType: 'pink' },
+    { id: 'experiments', label: 'Learning Analytics', icon: BarChart3 },
     { id: 'verification', label: 'Verification Lab', icon: ShieldCheck },
-    { id: 'prompts', label: 'Prompt Library', icon: Terminal },
+    { id: 'prompts', label: 'Prompt Lab', icon: Terminal },
     { id: 'reflections', label: 'Reflection Journal', icon: BookMarked },
-    { id: 'tools_ethics', label: 'AI Tools & Ethics', icon: Layers },
+    { id: 'tools_ethics', label: 'Tools & Ethics', icon: Layers },
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
@@ -75,42 +77,46 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Backdrop */}
       {isOpenMobile && (
         <div
-          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-peachy-950/40 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsOpenMobile(false)}
         />
       )}
 
-      {/* Sidebar Container */}
+      {/* Sidebar Container - 3D Cartoony Peachy Blossom Theme */}
       <aside
-        className={`fixed lg:static top-0 bottom-0 left-0 z-50 w-72 bg-white dark:bg-navy-900 text-slate-700 dark:text-slate-200 border-r border-slate-200 dark:border-navy-800 flex flex-col transition-all duration-200 ease-in-out ${
+        className={`fixed lg:static top-0 bottom-0 left-0 z-50 w-72 bg-peachy-50/95 dark:bg-navy-950/95 backdrop-blur-md text-slate-700 dark:text-rose-100 border-r-2 border-peachy-200/80 dark:border-rose-950/80 flex flex-col transition-all duration-200 ease-in-out shadow-sm ${
           isOpenMobile ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Brand Header */}
-        <div className="p-6 border-b border-slate-200/80 dark:border-navy-800/80 flex items-center justify-between">
+        <div className="p-5 border-b-2 border-peachy-200/70 dark:border-rose-950/70 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 p-1.5 transition-transform hover:scale-105">
-              <GlowingBookLogo className="w-full h-full text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.7)]" glow={false} />
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-peachy-500 via-blossom-500 to-peachy-400 flex items-center justify-center text-white shadow-3d-sm p-1.5 transition-transform hover:scale-105 active:scale-95 cursor-pointer border border-white/40">
+              <GlowingBookLogo className="w-full h-full text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]" glow={false} />
             </div>
             <div>
-              <h1 className="font-bold text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
-                ReadWise <span className="text-brand-600 dark:text-brand-400 font-extrabold text-xs uppercase px-1.5 py-0.5 rounded bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-500/30">AI</span>
+              <h1 className="font-extrabold text-lg text-slate-800 dark:text-rose-50 tracking-tight flex items-center gap-1.5">
+                ReadWise <span className="text-blossom-600 dark:text-blossom-400 font-black text-xs uppercase px-2 py-0.5 rounded-full bg-blossom-100 dark:bg-blossom-950/80 border border-blossom-300 dark:border-blossom-800/80 shadow-xs">🌸 AI</span>
               </h1>
-              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">AI Research & Knowledge Platform</p>
+              <p className="text-[11px] font-semibold text-peachy-600 dark:text-blossom-300 flex items-center gap-1">
+                <span>Peachy Journey</span>
+                <Sparkles className="w-3 h-3 text-butter-400" />
+              </p>
             </div>
           </div>
           <button
             onClick={() => setIsOpenMobile(false)}
-            className="lg:hidden text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white p-1 rounded-lg"
+            className="lg:hidden text-peachy-500 hover:text-peachy-700 p-1.5 rounded-xl bg-white dark:bg-navy-900 border border-peachy-200"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
-          <div className="px-3 pb-2 text-[11px] font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase">
-            Main Navigation
+        {/* Navigation Links - 3D Cartoony Tactile Tabs */}
+        <nav className="flex-1 overflow-y-auto px-3.5 py-4 space-y-2">
+          <div className="px-3 pb-1 text-[11px] font-extrabold tracking-wider text-peachy-600 dark:text-blossom-400 uppercase flex items-center gap-1.5">
+            <Heart className="w-3 h-3 fill-peachy-400 text-peachy-400" />
+            <span>Journey Quests</span>
           </div>
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -122,49 +128,64 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   setActiveTab(item.id as NavItem);
                   setIsOpenMobile(false);
                 }}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  isActive
-                    ? 'bg-brand-600 text-white shadow-md shadow-brand-600/30 font-semibold'
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800 hover:text-slate-900 dark:hover:text-white'
-                }`}
+                className={`tab-3d w-full ${isActive ? 'tab-3d-active' : 'tab-3d-inactive'}`}
               >
                 <div className="flex items-center space-x-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400 dark:text-slate-400'}`} />
-                  <span>{item.label}</span>
+                  <div className={`p-1.5 rounded-xl transition-transform ${
+                    isActive 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-peachy-100/60 dark:bg-navy-800/80 text-peachy-600 dark:text-blossom-300'
+                  }`}>
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-bold">{item.label}</span>
                 </div>
+
                 {item.badge ? (
                   <span
-                    className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
-                      item.badgeColor || (isActive ? 'bg-brand-700 text-white' : 'bg-slate-100 dark:bg-navy-800 text-brand-600 dark:text-brand-300 border border-slate-200 dark:border-brand-500/30')
+                    className={`text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs transition-transform ${
+                      item.badgeType === 'pink'
+                        ? 'bg-blossom-500 text-white shadow-3d-pink animate-pulse'
+                        : item.badgeType === 'butter'
+                        ? 'bg-butter-300 text-amber-900 shadow-3d-butter'
+                        : 'bg-white/25 text-white'
                     }`}
                   >
                     {item.badge}
                   </span>
                 ) : (
-                  isActive && <ChevronRight className="w-3.5 h-3.5 opacity-70" />
+                  isActive && (
+                    <div className="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center">
+                      <ChevronRight className="w-3.5 h-3.5 text-white" />
+                    </div>
+                  )
                 )}
               </button>
             );
           })}
         </nav>
 
-        {/* Professional Workspace & Account Footer */}
-        <div className="p-3.5 m-3 rounded-2xl bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-700/60 flex items-center justify-between text-xs text-slate-700 dark:text-slate-300 shadow-sm transition-colors">
+        {/* 3D Cartoony Gamified Level Profile Card */}
+        <div className="p-3.5 m-3 rounded-3xl bg-white/90 dark:bg-navy-900/90 border-2 border-peachy-200 dark:border-rose-950/80 shadow-clay-card flex items-center justify-between text-xs transition-all">
           <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-bold text-xs shadow-sm">
-              RW
+            <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-butter-200 via-peachy-300 to-blossom-400 flex items-center justify-center text-rose-900 font-black text-sm shadow-sm border-2 border-white">
+              🌸
             </div>
             <div>
-              <p className="text-xs font-semibold text-slate-900 dark:text-white">Research Workspace</p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                Pro Edition • Cloud Synced
+              <p className="text-xs font-black text-slate-800 dark:text-rose-100 flex items-center gap-1">
+                <span>Scholar Level 12</span>
+                <span className="text-[10px] font-black text-blossom-500">★</span>
               </p>
+              <div className="w-24 bg-peachy-100 dark:bg-navy-800 rounded-full h-1.5 mt-1 overflow-hidden border border-peachy-200">
+                <div className="bg-gradient-to-r from-peachy-500 to-blossom-500 h-full rounded-full" style={{ width: '78%' }} />
+              </div>
             </div>
           </div>
+          <span className="text-[10px] font-black text-peachy-600 dark:text-blossom-300 bg-peachy-100 dark:bg-navy-800 px-2 py-0.5 rounded-full">
+            78% XP
+          </span>
         </div>
       </aside>
     </>
   );
 };
-

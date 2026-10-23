@@ -94,7 +94,7 @@ export function App() {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-slate-50 dark:bg-navy-950 text-slate-900 dark:text-slate-100 font-sans">
+    <div className="flex h-screen w-screen overflow-hidden bg-peachy-50 dark:bg-navy-950 text-slate-800 dark:text-rose-50 font-sans selection:bg-peachy-200 selection:text-peachy-900">
       {/* Sidebar Navigation */}
       <Sidebar
         activeTab={activeTab}

@@ -1,3 +1,6 @@
+# ReadWise-AI
+AI-powered reading assistant for smart summaries, flashcards, recall tests, and learning analytics.
+
 # ReadWise AI — Full-Stack AI Reading and Note-Taking System
 **College Capstone Project (100 Marks Rubric)**
 

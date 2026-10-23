@@ -69,14 +69,16 @@ export const IdeaCardsView: React.FC = () => {
 
   return (
     <div className="p-4 lg:p-8 space-y-6 max-w-7xl mx-auto">
-      {/* Top Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Lightbulb className="w-5 h-5 text-amber-500" />
-            <span>Key Ideas & Spaced Flashcards</span>
+      {/* Top Header - Crisp Elevated 3D Claymorphic Card */}
+      <div className="clay-card p-6 md:p-8 border-2 border-peachy-200/90 dark:border-rose-950/80 shadow-clay-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+        <div className="space-y-1">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blossom-100 dark:bg-navy-800 border-2 border-blossom-300 dark:border-rose-900 text-blossom-700 dark:text-blossom-300 text-xs font-black uppercase tracking-wider shadow-xs">
+            <Lightbulb className="w-3.5 h-3.5 text-blossom-600 dark:text-blossom-400" /> Active Recall Memory Deck 💡
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-rose-50 tracking-tight">
+            Key Ideas & Spaced Flashcards
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-rose-200/80 font-medium">
             Conceptual flashcard study mode with 1-5 confidence rating scales saved to SQLite
           </p>
         </div>
@@ -84,9 +86,9 @@ export const IdeaCardsView: React.FC = () => {
         {flashcards.length > 0 && (
           <button
             onClick={() => setIsStudyModalOpen(true)}
-            className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-md shadow-amber-500/20 flex items-center gap-2 transition-all"
+            className="btn-3d btn-3d-butter px-6 py-3 text-xs sm:text-sm font-black shadow-3d-md flex items-center gap-2 transition-all flex-shrink-0"
           >
-            <Play className="w-4 h-4 fill-white" />
+            <Play className="w-4 h-4 fill-amber-700 text-amber-700" />
             <span>Launch Study Mode ({flashcards.length} Cards)</span>
           </button>
         )}

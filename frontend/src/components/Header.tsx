@@ -3,12 +3,12 @@ import {
   Menu,
   Moon,
   Sun,
-  Key,
   Clock,
-  Sparkles,
-  Database,
   CheckCircle2,
-  AlertTriangle
+  AlertTriangle,
+  Sparkles,
+  Music,
+  Compass
 } from 'lucide-react';
 import { NavItem } from './Sidebar';
 
@@ -35,63 +35,66 @@ export const Header: React.FC<HeaderProps> = ({
   onSeedData,
   isSeeding
 }) => {
-  const titles: Record<NavItem, { title: string; subtitle: string }> = {
-    dashboard: { title: 'Study Dashboard', subtitle: 'Real-time overview of learning metrics, retention, and due tests' },
-    library: { title: 'Reading Library', subtitle: 'Manage academic papers, book chapters, and extracted documents' },
-    workspace: { title: 'Study Workspace', subtitle: 'Dual-pane reading and note-taking environment' },
-    summaries: { title: '3-Level AI Summaries', subtitle: 'Quick (50w), Standard (150w), and Detailed (300w) summaries' },
-    cards: { title: 'Idea Cards & Flashcards', subtitle: 'Conceptual key ideas, interactive flashcards, and analytical questions' },
-    recall: { title: '7-Day Recall Testing', subtitle: 'Source-grounded active recall exams and spaced repetition schedules' },
-    experiments: { title: 'Learning Comparison Experiment', subtitle: 'Empirical comparison of Normal vs. AI-Assisted reading retention' },
-    verification: { title: 'AI Claim Verification Lab', subtitle: 'Audit generated statements against original text to detect hallucinations' },
-    prompts: { title: 'Prompt Engineering Laboratory', subtitle: 'Version, execute, compare, and rate custom academic prompt templates' },
-    reflections: { title: 'Metacognitive Reflection Journal', subtitle: 'Structured evaluations of AI assistance and independent memory' },
-    tools_ethics: { title: 'AI Tools & Ethics', subtitle: 'In-depth review of 4 free-tier study tools and academic integrity manifesto' },
-    settings: { title: 'System Settings', subtitle: 'Configure Gemini API keys, active model, and database state' }
+  const titles: Record<NavItem, { title: string; subtitle: string; icon: string }> = {
+    dashboard: { title: 'Study Island Journey', subtitle: 'Explore academic waypoints, quests, and learning paths', icon: '🏝️' },
+    library: { title: 'Reading Archives', subtitle: 'Explore original research papers and books', icon: '📚' },
+    workspace: { title: 'Dual-Pane Sanctum', subtitle: 'Immersive reading, text highlights, and note taking', icon: '✍️' },
+    summaries: { title: '3-Tier AI Summaries', subtitle: 'Quick (50w), Standard (150w), and Detailed (300w) distillations', icon: '✨' },
+    cards: { title: 'Idea Cards & Flashcards', subtitle: 'Interactive 3D-flip conceptual review decks', icon: '💡' },
+    recall: { title: 'Active Recall Arena', subtitle: 'Spaced repetition challenges and forgetting curve tests', icon: '⏳' },
+    experiments: { title: 'Empirical Observatory', subtitle: 'Real-time SQLite analytics: Normal vs. AI-Assisted retention', icon: '📊' },
+    verification: { title: 'Vigilance Outpost', subtitle: 'Epistemic claim auditor and hallucination verification', icon: '🛡️' },
+    prompts: { title: 'Prompt Laboratory', subtitle: 'Design, version, and evaluate academic prompt templates', icon: '🧪' },
+    reflections: { title: 'Metacognitive Journal', subtitle: 'Evaluate personal memory reliance and critical thinking', icon: '📖' },
+    tools_ethics: { title: 'Tools & Ethics', subtitle: 'Responsible AI manifesto, limits, and academic integrity', icon: '⚖️' },
+    settings: { title: 'Journey Settings', subtitle: 'Configure Gemini API keys, active model, and database state', icon: '⚙️' }
   };
 
-  const currentInfo = titles[currentTab] || { title: 'ReadWise AI', subtitle: 'Academic Study System' };
+  const currentInfo = titles[currentTab] || { title: 'ReadWise Journey', subtitle: 'Academic Exploration', icon: '🌸' };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border-b border-slate-200 dark:border-navy-800 px-4 lg:px-8 py-3.5 flex items-center justify-between transition-colors">
+    <header className="sticky top-0 z-30 bg-white/80 dark:bg-navy-950/80 backdrop-blur-md border-b-2 border-peachy-200/70 dark:border-rose-950/70 px-4 lg:px-8 py-3.5 flex items-center justify-between transition-colors">
       {/* Title & Mobile Hamburger */}
       <div className="flex items-center space-x-3">
         <button
           onClick={openMobileMenu}
-          className="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800"
+          className="lg:hidden p-2 rounded-2xl text-peachy-700 dark:text-rose-200 bg-peachy-100 dark:bg-navy-900 border border-peachy-200"
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5" />
         </button>
-        <div>
-          <h2 className="text-lg lg:text-xl font-bold text-slate-900 dark:text-white leading-tight">
-            {currentInfo.title}
-          </h2>
-          <p className="hidden md:block text-xs text-slate-500 dark:text-slate-400">
-            {currentInfo.subtitle}
-          </p>
+        <div className="flex items-center space-x-2.5">
+          <span className="text-2xl select-none" role="img" aria-label="Tab Icon">{currentInfo.icon}</span>
+          <div>
+            <h2 className="text-base lg:text-lg font-black text-slate-800 dark:text-rose-100 leading-tight flex items-center gap-1.5">
+              <span>{currentInfo.title}</span>
+            </h2>
+            <p className="hidden md:block text-[11px] font-medium text-peachy-700/80 dark:text-blossom-300">
+              {currentInfo.subtitle}
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Global Action Badges */}
+      {/* Global 3D Cartoony Action Pills */}
       <div className="flex items-center space-x-2.5">
-        {/* Gemini API Key Status Badge */}
+        {/* Gemini AI Status Badge */}
         {hasGeminiKey ? (
           <div
             onClick={() => onNavigate('settings')}
-            className="cursor-pointer hidden sm:flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-semibold hover:opacity-90 transition-opacity"
+            className="cursor-pointer hidden sm:flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-200 text-xs font-black shadow-xs hover:scale-105 transition-transform"
             title="Gemini 3.8 Flash SDK Active"
           >
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Gemini AI Connected</span>
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+            <span>AI Connected</span>
           </div>
         ) : (
           <button
             onClick={() => onNavigate('settings')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-300 text-xs font-semibold hover:bg-amber-100 transition-colors animate-pulse"
-            title="Click to configure Gemini API Key"
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-butter-200 border-2 border-butter-400 text-amber-950 text-xs font-black shadow-3d-butter active:translate-y-0.5 animate-pulse"
+            title="Configure Gemini API Key"
           >
-            <AlertTriangle className="w-3.5 h-3.5" />
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-700" />
             <span>Add API Key</span>
           </button>
         )}
@@ -100,23 +103,33 @@ export const Header: React.FC<HeaderProps> = ({
         {dueTestsCount > 0 && (
           <button
             onClick={() => onNavigate('recall')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/60 border border-rose-300 dark:border-rose-700 text-rose-700 dark:text-rose-300 text-xs font-bold hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors"
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-blossom-500 text-white text-xs font-black shadow-3d-pink hover:bg-blossom-400 active:translate-y-0.5 transition-all"
           >
-            <Clock className="w-3.5 h-3.5 text-rose-500" />
-            <span>{dueTestsCount} Test{dueTestsCount > 1 ? 's' : ''} Due</span>
+            <Clock className="w-3.5 h-3.5" />
+            <span>{dueTestsCount} Quest{dueTestsCount > 1 ? 's' : ''} Due</span>
           </button>
         )}
 
-        {/* Theme Toggle */}
+        {/* Map Shortcut Pill */}
+        {currentTab !== 'dashboard' && (
+          <button
+            onClick={() => onNavigate('dashboard')}
+            className="hidden md:flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-peachy-100 hover:bg-peachy-200 text-peachy-800 dark:bg-navy-900 dark:text-rose-200 text-xs font-black border-2 border-peachy-300 dark:border-rose-900 shadow-xs transition-all"
+          >
+            <Compass className="w-3.5 h-3.5 text-peachy-600" />
+            <span>World Map</span>
+          </button>
+        )}
+
+        {/* Theme Toggle Button */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800 border border-slate-200 dark:border-navy-700 transition-colors"
+          className="p-2 rounded-2xl bg-white dark:bg-navy-900 text-slate-700 dark:text-rose-200 border-2 border-peachy-200 dark:border-rose-950 shadow-xs hover:bg-peachy-50 transition-all hover:scale-105 active:scale-95"
           aria-label="Toggle dark mode"
         >
-          {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
+          {isDarkMode ? <Sun className="w-4 h-4 text-butter-400" /> : <Moon className="w-4 h-4 text-peachy-600" />}
         </button>
       </div>
     </header>
   );
 };
-
